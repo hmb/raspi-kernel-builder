@@ -1,11 +1,13 @@
 #!/bin/bash
 
-MODEL=2
-BIT_WIDTH=32
-GIT_REF=stable_20250916
-VERSION=1
+if [[ ! -f build-config ]]; then
+  echo "Missing build configuration"
+  exit 1
+fi
 
-CORES="$(nproc)"
+. build-config
+
+CORES="${CORES:-$(nproc)}"
 
 dockerBuild() {
   local target="$1"

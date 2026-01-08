@@ -1,0 +1,35 @@
+# This is the raspberry pi kernel builder configuration
+# Please copy this file rename it to build-config and adjust the vales to your needs.
+
+#
+# Set the raspberry pi hardware model. This has to be an integer between 1 to 5, designating
+# the underlying Pi hardware. There are no differences between normal and + (plus) versions
+# like B and B+. The RPi Zero is 1, Zero 2 is 2.
+#
+MODEL=2
+
+#
+# Set to 32 or 64 in order to compile a 32 or 64 bit version of the kernel.
+# Note that not all architectures are available depending on the MODEL set above
+# E. g., there's no 64 bit kernel for hardware < 3. an no 32 bit kernel for the Pi 5
+# The build will fail on any illeagal combinations
+#
+BIT_WIDTH=32
+
+#
+# Set the git hash, branch or tag of the commit to be built. At the time of this writing
+# there's a git tag carrying the date given in 'uname -a'
+#
+GIT_REF=stable_20250916
+
+#
+# Set the kernel version. This is the number indicated after the hashtag in 'uname -a'
+# E. g., ... #1 -> 1
+#
+VERSION=1
+
+#
+# Override the number of cores to use in compilation. If unset the number of cores is determined automatically and
+# set to the maximum number of cores available ('nproc')
+#
+#CORES=1
