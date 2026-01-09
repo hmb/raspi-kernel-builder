@@ -43,10 +43,11 @@ ARG ARCH=arm
 ARG CROSS_COMPILE=arm-linux-gnueabihf-
 
 
-FROM toolchain-64 AS model-64-3
+FROM toolchain-64 AS model-64-2
 ARG KERNEL=kernel8
 ARG DEF_CONFIG=bcm2711_defconfig
-FROM model64-3 AS model-64-4
+FROM model64-2 AS model-64-3
+FROM model64-2 AS model-64-4
 
 FROM toolchain-64 AS model-64-5
 ARG KERNEL=kernel_2712
@@ -95,7 +96,7 @@ FROM configured AS compile-full
 
 RUN <<EOF
   make -j$((CORES*3/2)) ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" zImage modules dtbs
-#  make -j$((CORES*3/2)) ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" deb-pkg
+  make -j$((CORES*3/2)) ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" deb-pkg
 EOF
 
 
